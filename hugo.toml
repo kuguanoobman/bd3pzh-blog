@@ -1,11 +1,74 @@
 baseURL = 'http://bd3pzh.top/'
-languageCode = 'zh-CN'
-title = '靖康的博客'
-summaryLength = 80
+locale = 'zh-CN'
+defaultContentLanguage = 'zh'
+hasCJKLanguage = true
+title = '靖康'
+theme = 'hugo-theme-stack'
+
+[pagination]
+  pagerSize = 5
+
+[permalinks]
+  post = '/p/:slug/'
+  page = '/:slug/'
+
+[[menu.social]]
+  identifier = 'email'
+  name = 'Email'
+  url = 'mailto:bd3pzh@foxmail.com'
+  weight = 10
+
+  [menu.social.params]
+    icon = 'messages'
+    newTab = false
 
 [params]
-  description = '以画意摄影的留白、层次与静气记录日常。'
-  author = '靖康'
+  mainSections = ['post']
+  description = '靖康的博客'
+  rssFullContent = true
+
+  [params.footer]
+    since = 2026
+    customText = '我到底为什么熬夜？'
+
+  [params.sidebar]
+    compact = false
+    subtitle = '光荣在于平淡，艰巨在于漫长'
+    avatar = ''
+
+  [params.article]
+    headingAnchor = false
+    math = false
+    toc = true
+    readingTime = true
+
+    [params.article.list]
+      showTags = false
+
+    [params.article.license]
+      enabled = false
+
+  [params.widgets]
+    homepage = [
+      { type = 'search' },
+      { type = 'archives', params = { limit = 5 } },
+      { type = 'categories', params = { limit = 10 } },
+      { type = 'tag-cloud', params = { limit = 10 } },
+    ]
+    page = [
+      { type = 'toc' },
+      { type = 'search' },
+      { type = 'archives', params = { limit = 5 } },
+      { type = 'categories', params = { limit = 10 } },
+      { type = 'tag-cloud', params = { limit = 10 } },
+    ]
+
+  [params.comments]
+    enabled = false
+
+  [params.colorScheme]
+    toggle = true
+    default = 'auto'
 
 [markup]
   [markup.goldmark]
