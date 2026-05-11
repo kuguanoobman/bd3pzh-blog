@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #23211e;
+      --muted: #746f66;
+      --paper: #f4f1ea;
+      --paper-deep: #e9e3d7;
+      --line: rgba(35, 33, 30, 0.18);
+      --wash: rgba(75, 82, 71, 0.12);
+      --seal: #9b2f25;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-serif, "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", Georgia, serif;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(35, 33, 30, 0.06), transparent 22rem),
+        linear-gradient(110deg, rgba(255,255,255,0.58), transparent 42%),
+        var(--paper);
+      color: var(--ink);
+      letter-spacing: 0;
+    }
+    a { color: inherit; text-decoration: none; }
+    .shell { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
+    .site-header { padding: 34px 0 18px; border-bottom: 1px solid var(--line); }
+    .brand { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; }
+    .brand-title { font-size: clamp(28px, 5vw, 54px); font-weight: 500; line-height: 1.05; }
+    .brand-mark { color: var(--seal); border: 1px solid currentColor; padding: 7px 8px; font-size: 14px; line-height: 1; }
+    .hero { min-height: 52vh; display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 340px); gap: 48px; align-items: center; padding: 64px 0 56px; }
+    .hero h1 { margin: 0; font-size: clamp(36px, 7vw, 82px); font-weight: 500; line-height: 1.08; }
+    .hero p { max-width: 650px; margin: 22px 0 0; color: var(--muted); font-size: clamp(17px, 2.2vw, 22px); line-height: 1.9; }
+    .photo-wash { min-height: 360px; border-left: 1px solid var(--line); position: relative; overflow: hidden; }
+    .photo-wash::before { content: ""; position: absolute; inset: 10% 0 6% 18%; background: linear-gradient(150deg, rgba(35,33,30,.2), rgba(35,33,30,.04) 42%, transparent 70%); filter: blur(1px); clip-path: polygon(18% 0, 78% 8%, 100% 48%, 82% 100%, 28% 88%, 0 42%); }
+    .photo-wash::after { content: ""; position: absolute; right: 18%; bottom: 12%; width: 42%; height: 30%; background: var(--wash); border-radius: 50%; filter: blur(18px); }
+    .posts { padding: 18px 0 72px; }
+    .section-title { margin: 0 0 22px; color: var(--muted); font-size: 15px; font-weight: 400; }
+    .post-list { display: grid; gap: 18px; }
+    .post-item { display: grid; grid-template-columns: 150px 1fr; gap: 26px; padding: 24px 0; border-top: 1px solid var(--line); }
+    .post-date { color: var(--muted); font-size: 15px; }
+    .post-item h2 { margin: 0 0 10px; font-size: clamp(24px, 3vw, 36px); font-weight: 500; }
+    .post-item p { margin: 0; color: var(--muted); font-size: 17px; line-height: 1.8; }
+    .article { max-width: 760px; padding: 72px 0 96px; }
+    .article time { color: var(--muted); font-size: 15px; }
+    .article h1 { margin: 14px 0 34px; font-size: clamp(34px, 6vw, 64px); font-weight: 500; line-height: 1.1; }
+    .article-content { font-size: 21px; line-height: 2.05; }
+    .site-footer { border-top: 1px solid var(--line); color: var(--muted); padding: 26px 0 34px; font-size: 14px; }
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 28px, 1080px); }
+      .brand { align-items: flex-start; }
+      .hero { grid-template-columns: 1fr; gap: 24px; padding: 46px 0 44px; }
+      .photo-wash { min-height: 180px; border-left: 0; border-top: 1px solid var(--line); }
+      .post-item { grid-template-columns: 1fr; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell brand">
+      <a class="brand-title" href="/">靖康的博客</a>
+      <span class="brand-mark">靖康</span>
+    </div>
+  </header>
+  <main class="shell">
+    {{ block "main" . }}{{ end }}
+  </main>
+  <footer class="site-footer">
+    <div class="shell">{{ now.Format "2006" }} · bd3pzh.top</div>
+  </footer>
+</body>
+</html>

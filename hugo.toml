@@ -1,0 +1,13 @@
+baseURL = 'http://bd3pzh.top/'
+languageCode = 'zh-CN'
+title = '靖康的博客'
+summaryLength = 80
+
+[params]
+  description = '以画意摄影的留白、层次与静气记录日常。'
+  author = '靖康'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
