@@ -3,12 +3,10 @@
   <span class="thoughts-lock" aria-hidden="true">{{ partial "helper/icon" "lock" }}</span>
   <p class="eyebrow">PERSONAL THOUGHTS / 私人放映室</p>
   <h1 id="thoughts-title">个人想法</h1>
-  <p class="gate-intro">有些心事，留给熟悉我的人。<br>我的生日在农历腊月，填对日数就能翻开这一页。</p>
+  <p class="gate-intro">有些心事，留给熟悉我的人。</p>
   <form action="/_private/login" method="post" class="thoughts-form">
-    <label for="birthday">农历生日 · 腊月</label>
-    <div class="thoughts-input"><div class="thoughts-day-field"><span aria-hidden="true">腊月</span><input id="birthday" name="birthday" type="text" inputmode="numeric" pattern="0?[1-9]|[12][0-9]|30" maxlength="2" placeholder="例如初九填 9，廿三填 23" autocomplete="off" required></div><button type="submit">解锁手记 <span aria-hidden="true">↗</span></button></div>
+    <div class="thoughts-input"><div class="thoughts-day-field"><span aria-hidden="true">腊月</span><input id="birthday" name="birthday" type="text" inputmode="numeric" pattern="0?[1-9]|[12][0-9]|30" maxlength="2" aria-label="生日的日数" autocomplete="off" required><span aria-hidden="true">日</span></div><button type="submit">解锁手记 <span aria-hidden="true">↗</span></button></div>
     <input type="hidden" name="next" value="/thoughts/" id="thoughts-next">
-    <p class="gate-hint">已填好腊月，只需填写 1～30 的日数，不含年份。</p>
     <p class="gate-message" id="gate-message" role="status" aria-live="polite"></p>
   </form>
   <a class="gate-back" href="{{ .Site.Home.RelPermalink }}">← 回到公开手记</a>
