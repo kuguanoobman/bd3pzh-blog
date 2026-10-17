@@ -68,7 +68,7 @@ theme = 'hugo-theme-stack'
 
   [params.colorScheme]
     toggle = true
-    default = 'auto'
+    default = 'light'
 
 [markup]
   [markup.goldmark]

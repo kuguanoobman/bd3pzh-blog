@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Locale }}" dir="ltr">
+<head>{{ partial "head/head.html" . }}{{ block "head" . }}{{ end }}</head>
+<body class="cel-blog {{ if .IsHome }}cel-home{{ end }} {{ block "body-class" . }}{{ end }}">
+{{ partial "head/colorScheme" . }}
+<a class="skip-link" href="#main-content">跳到正文</a>
+<header class="cel-header">
+  <a class="cel-brand" href="{{ .Site.Home.RelPermalink }}" aria-label="靖康的博客首页"><span class="brand-seal">靖</span><span>{{ .Site.Title }}<small>日常 / 代码 / 奇思妙想</small></span></a>
+  <nav class="cel-nav" aria-label="主导航">
+    <a href="{{ .Site.Home.RelPermalink }}" {{ if .IsHome }}aria-current="page"{{ end }}>首页<span>HOME</span></a>
+    <a href="{{ "archives/" | relURL }}" {{ if eq .Layout "archives" }}aria-current="page"{{ end }}>归档<span>ARCHIVE</span></a>
+    <a href="{{ "categories/" | relURL }}" {{ if eq .Section "categories" }}aria-current="page"{{ end }}>分类<span>CATEGORIES</span></a>
+  </nav>
+  <div class="nav-tools"><a href="{{ "search/" | relURL }}" aria-label="搜索文章">{{ partial "helper/icon" "search" }}</a><button type="button" id="dark-mode-toggle" aria-label="切换明暗主题" title="切换明暗主题">{{ partial "helper/icon" "moon" }}</button></div>
+</header>
+<div class="cel-shell container main-container flex on-phone--column extended">
+  {{ block "right-sidebar" . }}{{ end }}
+  <main id="main-content" class="main full-width">{{ block "main" . }}{{ end }}</main>
+</div>
+{{ partial "footer/include.html" . }}
+</body></html>

@@ -1,0 +1,24 @@
+{{ define "main" }}
+<section class="opening" aria-labelledby="opening-title">
+  <div class="opening-copy"><p class="eyebrow"><span class="red-dot"></span> JINGKANG'S JOURNAL <span class="edition">VOL. 01</span></p><h1 id="opening-title">光荣在于平淡，<br>艰巨在于<em>漫长。</em></h1><p class="opening-note">你好，我是靖康。<br>在这里收集生活的切片，和代码里的灵光一现。</p><a class="primary-link" href="#journal">翻开我的手记 <span aria-hidden="true">↗</span></a><span class="vertical-note" aria-hidden="true">日々のかけら · 每一天，都值得被记住</span></div>
+  <figure class="hero-frame"><img src="{{ "images/summer-train.webp" | relURL }}" width="1536" height="640" alt="赛璐璐动画风格插画：夏日蓝天和积云下，一列红色电车沿着海岸驶过。" fetchpriority="high"><figcaption><span>SCENE 01 / 夏日，海风与远方</span><span>一个故事，正在发生。 ↗</span></figcaption><span class="frame-stamp" aria-hidden="true">夏の記録<br><b>SUMMER DAYS</b></span></figure>
+</section>
+<div class="ticker" aria-hidden="true"><span>生活缓慢，保持可爱。</span><span>✳</span><span>STAY CURIOUS. KEEP CREATING.</span><span>✳</span><span>下一站，会有新的风景。</span><span>✳</span></div>
+<div class="journal-layout" id="journal">
+<section class="journal-main" aria-labelledby="journal-title"><div class="section-heading"><h2 id="journal-title"><span class="red-dot"></span>最近的手记 <small>LATEST ENTRIES</small></h2><span>{{ len (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) }} 篇记录</span></div>
+{{ $paginator := partial "helper/paginator.html" . }}
+<div class="journal-list">{{ range $index, $page := $paginator.Pages }}
+<article class="journal-card"><a class="entry-art {{ if modBool $index 2 }}art-network{{ else }}art-life{{ end }}" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true"><span class="art-label">{{ with .GetTerms "categories" }}{{ (index . 0).LinkTitle }}{{ else }}手记{{ end }}</span>{{ if modBool $index 2 }}<div class="network-art"><i></i><i></i><i></i><i></i><span>HELLO,<br>CONNECTED WORLD.</span></div>{{ else }}<div class="life-art"><span>日々</span><b>小さな幸せ</b><i>✳</i></div>{{ end }}<span class="art-number">NOTE / {{ printf "%02d" (add $index 1) }}</span></a>
+<div class="entry-copy"><div class="entry-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time><span>·</span><span>{{ .ReadingTime }} 分钟阅读</span></div><h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3><p>{{ .Summary | plainify | truncate 100 }}</p><div class="entry-bottom"><div>{{ range .GetTerms "tags" }}<a class="entry-tag" href="{{ .RelPermalink }}"># {{ .LinkTitle }}</a>{{ end }}</div><a class="read-entry" href="{{ .RelPermalink }}" aria-label="阅读：{{ .Title }}">阅读全文 <span aria-hidden="true">↗</span></a></div></div></article>
+{{ end }}</div>
+{{ partial "pagination.html" . }}
+<a class="archive-link" href="{{ "archives/" | relURL }}">去往时光档案馆 <span aria-hidden="true">→</span></a>
+</section>
+<aside class="journal-aside" aria-label="关于作者和文章分类">
+<section class="profile-card"><div class="profile-top"><span>ABOUT THE AUTHOR</span><span aria-hidden="true">✳</span></div><div class="profile-avatar" aria-hidden="true">靖<span>✦</span></div><h2>你好，我是靖康 <span>↗</span></h2><p>{{ .Site.Params.sidebar.subtitle }}。<br>写一点技术，记一点生活。<br>愿我们始终对世界保有好奇。</p><div class="profile-stats"><a href="{{ "archives/" | relURL }}"><strong>{{ len (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) }}</strong>篇手记</a><a href="{{ "categories/" | relURL }}"><strong>{{ len .Site.Taxonomies.categories }}</strong>个话题</a><a href="mailto:bd3pzh@foxmail.com">来信 <span>↗</span></a></div></section>
+<section class="topic-card"><h2>手记分类 <small>TOPICS</small></h2>{{ range .Site.Taxonomies.categories.ByCount }}<a href="{{ .Page.RelPermalink }}"><span>{{ .Page.Title }}</span><span>{{ printf "%02d" .Count }} ↗</span></a>{{ end }}</section>
+<div class="aside-note"><span>便 笺 / MEMO</span><p>不必急着抵达，<br>沿途的风景也很好。</p><span aria-hidden="true">一緒に、ゆっくり。</span><b aria-hidden="true">✳</b></div>
+<a class="rss-link" href="{{ "index.xml" | relURL }}">{{ partial "helper/icon" "rss" }} 订阅博客 <span>RSS ↗</span></a>
+</aside></div>
+{{ partial "footer/footer.html" . }}
+{{ end }}
