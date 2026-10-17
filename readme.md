@@ -26,6 +26,17 @@ hugo --minify --cacheDir /tmp/jingkang-hugo-cache
 
 生成文件位于 `public/`。沿用现有 `deploy-blog` 部署流程。
 
+这台电脑已配置专用的免密码部署密钥。写完文章后，在项目目录执行：
+
+```sh
+git add content
+git commit -m "更新博客文章"
+git push origin main
+ssh blog-deploy
+```
+
+`ssh blog-deploy` 会直接运行 VPS 上的 `/usr/local/bin/deploy-blog`，拉取 GitHub 的 `main` 分支并上线。这把密钥仅可执行博客部署，不会打开远程终端。私钥保存在本机 `~/.ssh/`，不提交到仓库。
+
 ## 视觉维护
 
 - 首页：`layouts/home.html`
