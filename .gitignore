@@ -4,3 +4,6 @@ assets/jsconfig.json
 .hugo_build.lock
 .DS_Store
 layouts_backup/
+.private-content/
+
+__pycache__/

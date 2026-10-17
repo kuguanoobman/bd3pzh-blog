@@ -1,0 +1,22 @@
+[Unit]
+Description=Jingkang private thoughts authentication
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+ExecStart=/usr/bin/python3 /srv/bd3pzh-blog/ops/private-server.py
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadOnlyPaths=/etc/jingkang-blog/auth /var/lib/jingkang-blog/site /srv/bd3pzh-blog/ops
+InaccessiblePaths=/etc/jingkang-blog/private-posts.pem
+RestrictAddressFamilies=AF_INET AF_UNIX
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

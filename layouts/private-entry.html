@@ -1,0 +1,5 @@
+{{ define "main" }}
+<header class="thoughts-heading"><a href="/thoughts/">← 个人想法</a><form action="/_private/logout" method="post"><button class="thoughts-logout" type="submit">重新上锁 {{ partial "helper/icon" "lock" }}</button></form></header>
+<article class="main-article"><header class="article-header"><div class="article-details"><p class="eyebrow">PERSONAL THOUGHTS / 私人手记</p><h1 class="article-title">{{ .Title }}</h1><div class="entry-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time><span>{{ .ReadingTime }} 分钟阅读</span></div></div></header><section class="article-content">{{ .Content }}</section></article>
+{{ partial "footer/footer.html" . }}
+{{ end }}

@@ -47,3 +47,7 @@ ssh blog-deploy
 - 插画生成说明：`docs/visual-design.md`
 
 自定义文件均位于项目目录，未修改 Stack 主题子模块。首页文章、分类和数量由 Hugo 自动生成，草稿不公开。
+
+## 私密分类：个人想法
+
+“个人想法”使用农历腊月生日的日数解锁，输入框固定显示腊月。私密文章在公开 GitHub 仓库中仅保存密文，原稿放在本机 `.private-content/`。写作和发布方法见 [私密手记说明](docs/private-thoughts.md)。

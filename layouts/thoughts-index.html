@@ -1,0 +1,5 @@
+{{ define "main" }}
+<header class="thoughts-heading"><div><p class="eyebrow">PERSONAL THOUGHTS / 私人放映室</p><h1>个人想法</h1><p>谢谢你，愿意走近我的世界。</p></div><form action="/_private/logout" method="post"><button class="thoughts-logout" type="submit">重新上锁 {{ partial "helper/icon" "lock" }}</button></form></header>
+{{ if .RegularPages }}<section class="article-list">{{ range .RegularPages.ByDate.Reverse }}<article class="private-entry-card"><time>{{ .Date.Format "2006.01.02" }}</time><h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2><p>{{ .Summary | plainify | truncate 120 }}</p><a class="read-entry" href="{{ .RelPermalink }}">阅读手记 ↗</a></article>{{ end }}</section>{{ else }}<section class="private-empty"><span aria-hidden="true">✳</span><h2>这里的故事，慢慢写。</h2><p>还没有发布个人想法，下一次灵光一现时见。</p></section>{{ end }}
+{{ partial "footer/footer.html" . }}
+{{ end }}

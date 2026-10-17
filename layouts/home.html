@@ -16,7 +16,7 @@
 </section>
 <aside class="journal-aside" aria-label="关于作者和文章分类">
 <section class="profile-card"><div class="profile-top"><span>ABOUT THE AUTHOR</span><span aria-hidden="true">✳</span></div><div class="profile-avatar" aria-hidden="true">靖<span>✦</span></div><h2>你好，我是靖康 <span>↗</span></h2><p>{{ .Site.Params.sidebar.subtitle }}。<br>写一点技术，记一点生活。<br>愿我们始终对世界保有好奇。</p><div class="profile-stats"><a href="{{ "archives/" | relURL }}"><strong>{{ len (where .Site.RegularPages "Section" "in" .Site.Params.mainSections) }}</strong>篇手记</a><a href="{{ "categories/" | relURL }}"><strong>{{ len .Site.Taxonomies.categories }}</strong>个话题</a><a href="mailto:bd3pzh@foxmail.com">来信 <span>↗</span></a></div></section>
-<section class="topic-card"><h2>手记分类 <small>TOPICS</small></h2>{{ range .Site.Taxonomies.categories.ByCount }}<a href="{{ .Page.RelPermalink }}"><span>{{ .Page.Title }}</span><span>{{ printf "%02d" .Count }} ↗</span></a>{{ end }}</section>
+<section class="topic-card"><h2>手记分类 <small>TOPICS</small></h2><a class="locked-topic" href="{{ "categories/personal-thoughts/" | relURL }}"><span>{{ partial "helper/icon" "lock" }} 个人想法</span><span>私人 ↗</span></a>{{ range .Site.Taxonomies.categories.ByCount }}{{ if ne .Page.Title "个人想法" }}<a href="{{ .Page.RelPermalink }}"><span>{{ .Page.Title }}</span><span>{{ printf "%02d" .Count }} ↗</span></a>{{ end }}{{ end }}</section>
 <div class="aside-note"><span>便 笺 / MEMO</span><p>不必急着抵达，<br>沿途的风景也很好。</p><span aria-hidden="true">一緒に、ゆっくり。</span><b aria-hidden="true">✳</b></div>
 <a class="rss-link" href="{{ "index.xml" | relURL }}">{{ partial "helper/icon" "rss" }} 订阅博客 <span>RSS ↗</span></a>
 </aside></div>
